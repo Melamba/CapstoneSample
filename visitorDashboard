@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <meta charset="UTF-8">
+    <style>
+           #map
+        {
+            width: 80%;
+            height: 80%;
+            margin: auto;
+            border: solid 10px #4a265e;
+            z-index: 1;
+            transition: width 1s ease, height 1s ease;
+        }
+            #map:hover
+            {
+                width: 90%;
+                height: 90%;
+            }
+       
+        body
+        {
+            margin: 0 0 0 0;
+           
+        }
+        .classR
+        {
+        display: flex;
+        flex-direction: row;
+        width: 100%;  
+        height: 100%;
+        min-height: 100%;
+        flex: 1 1 auto;
+        overflow: hidden;
+        }
+        .classC
+        {
+        display: flex;
+        flex-direction: column;
+         width: 100%;  
+        height: 100%;
+        min-height: 100%;
+        flex: 1 1 auto;
+        overflow: hidden;
+        }
+        .divc
+        {
+            flex: 1 1 0px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+       
+        .divcB
+        {
+            flex: 0.9 0px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: flex 1s ease;
+            
+        }
+        .divcB:hover
+        {
+            flex: 1 0 0;
+        }
+        .pRibbon
+        {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;  
+            height: 100vh;
+            min-height: 100vh;
+        }
+        .tRibbon
+        {
+           background-color: #4a265e;
+           min-height: 5vh; 
+           max-height: 8vh;
+            width: 100%;
+        z-index: 9999; 
+        }
+    
+    .contDes
+    {
+    background-color: white;
+    border: #4a265e solid 2px;
+    border-radius: 12px; 
+    color: black;
+    width:80%;
+    min-height: 30vh;
+    padding: 3vh;
+    box-sizing: border-box;
+    margin: auto;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+    }
+      .contDesAlt
+        {
+            margin-top: 0px;
+            min-height: 42VH;
+        }
+    .idParent
+    {
+        display: flex;
+        flex-direction: row;
+        min-height: 100%;
+        max-height: 100%;
+        align-items: flex-start;
+        gap:1vh;
+    }
+    .idImgcont
+    {
+       
+       width: 30%;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-start; 
+    }
+    .idImg
+    {
+    width: 90%;
+    height: auto; 
+    aspect-ratio: 1 / 1; 
+    object-fit: cover;
+    object-position: center;
+    flex-shrink: 0; 
+    border: solid black 1px;
+    }
+    .idInfo
+    {
+        color:black;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1;
+      padding: 0%;
+    }
+    .idInfoChild
+    {
+        padding: 0;
+        line-height: 5vh;
+        font-size: large;
+         align-items: flex-start;
+    }
+    .idInfoCont
+    {
+    color: black;
+    background-color: lightgrey;
+    height: 2vh;
+    }
+    </style>
+    
+</head>
+ 
+<body>
+    
+    <div class = pRibbon>
+        <div class = tRibbon>a</div>
+        <div class = classR>
+            <div class = divc>
+                 <div id = "map"></div>
+            </div>
+            <div class = divc>
+                  <div class = divcB>
+                    <div class = contDes><h2>Building Name:</h2>
+                                        <br><h3>Building Desc:</h3>
+                    </div>  
+                  </div>
+                  <div class = "divcB">
+                    <div class = "contDes contDesAlt">
+                        <div class = idParent>
+                            
+                            <div class = idInfo>
+                                <H3>VISITOR INFORMATION CARD</H1>
+                                <div class=idInfoChild>Name: </div>
+                                <div class = idInfoCont>a</div>
+                                <div class=idInfoChild>Age</div>
+                                 <div class = idInfoCont>a</div>
+                                <div class=idInfoChild>Birthdate:</div>
+                                 <div class = idInfoCont>a</div>
+                                <div class=idInfoChild>Visitor Type: </div>
+                                 <div class = idInfoCont>a</div>
+                                
+                            </div>
+                </div></div>  
+                </div>
+            </div>
+            </div>
+    </div>
+</body>
+    <script>
+        
+        var map = L.map('map',{
+             minZoom: 17.5,
+            maxZoom: 24,
+            maxBounds: [
+                [14.661016559725885, 120.98713847292149],
+                [14.657335733123084, 120.98542608229778]
+            ],
+            maxBoundsViscosity: 1.0
+        }).setView([14.65835117638478,120.98624458460917],20);
+        L.tileLayer('https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.jpg?key=76drzXxYrFFwuQRnFNKS' , {
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+            minZoom: 17.5,
+            maxZoom: 22,
+            maxNativeZoom: 19
+        }).addTo(map);
+         var leafletIcon = L.icon({
+            iconUrl:'https://64.media.tumblr.com/193610c5a76a3e0801f40790981a2816/a50f3003a25ecf54-d3/s400x600/adca53d6e4fc0485806a187e2918672c2ffebe74.pnj', 
+            iconSize: [38,35],
+           
+        })  
+        
+        var adminMarker = L.marker([14.657660229212729, 120.98671314851723],{icon:leafletIcon}).addTo(map).bindPopup("Admin Building");
+        var fdtMarker = L.marker([14.65834967909162, 120.98625004709956],{icon:leafletIcon}).addTo(map).bindPopup("FDT");
+        var anatomyMarker = L.marker([14.658000163009532, 120.9867319239792],{icon:leafletIcon}).addTo(map).bindPopup("Anatomy Building");
+        var archMarker = L.marker([14.65776532330548, 120.98641274112585],{icon:leafletIcon}).addTo(map).bindPopup("Arch");
+        var pgtMarker = L.marker([14.659267858564103, 120.98567713880672],{icon:leafletIcon}).addTo(map).bindPopup("PGT Building");
+        var gplMarker = L.marker([14.659045187468603, 120.98609128594734],{icon:leafletIcon}).addTo(map).bindPopup("GPL Building");
+        var lrcMarker = L.marker([14.659267123462485, 120.98645539027785],{icon:leafletIcon}).addTo(map).bindPopup("LRC Building");
+        var pocMarker = L.marker([14.66049141773283, 120.98591887871622],{icon:leafletIcon}).addTo(map).bindPopup("Purple Owl Complex");
+        var cgMarker = L.marker([14.660531785242888, 120.98636658748819],{icon:leafletIcon}).addTo(map).bindPopup("Centennial Gymnasium");
+        
+        L.control.scale({
+            metric: true
+        }).addTo(map);
+
+    </script>
+</html>
