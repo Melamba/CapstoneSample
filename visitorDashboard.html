@@ -225,7 +225,7 @@
              minZoom: 17.5,
             maxZoom: 24,
             maxBounds: [
-                [14.661016559725885, 120.98713847292149],
+              [14.661016559725885, 120.98713847292149],
                 [14.657335733123084, 120.98542608229778]
             ],
             maxBoundsViscosity: 1.0
@@ -238,7 +238,7 @@
         }).addTo(map);
          var leafletIcon = L.icon({
             iconUrl:'https://64.media.tumblr.com/193610c5a76a3e0801f40790981a2816/a50f3003a25ecf54-d3/s400x600/adca53d6e4fc0485806a187e2918672c2ffebe74.pnj', 
-            iconSize: [38,35],
+            iconSize: [33,29],
            
         })  
         
@@ -256,5 +256,29 @@
             metric: true
         }).addTo(map);
 
+        navigator.geolocation.watchPosition(success,error)
+        function success(pos)
+        {
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+            const accuracy = pos.coords.accuracy; 
+            let marker = L.marker([lat,lng]).addTo(map);
+            let circle = L.circle([lat,lng], {radius : accuracy }).addTo(map);
+            let teleporter = map.fitBounds(circle.getBounds());
+            
+        }
+        
+        function error(err)
+        {
+            if (err.code === 1) 
+            {
+                alert("Please Allow Access for the geolocation");
+
+            }
+            else
+            {
+                alert("cannot get current location");
+            }
+        }
     </script>
 </html>
